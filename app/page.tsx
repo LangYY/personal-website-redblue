@@ -21,6 +21,7 @@ type Project = {
   description: string;
   tags: string[];
   url?: string;
+  qr?: string;
 };
 
 type VideoItem = {
@@ -92,6 +93,7 @@ const mobileProjects: Project[] = [
     image: "/assets/projects/html-preview.jpg",
     description: "从个人预览逐步扩展到 HTML Slides、网页、小游戏、小工具和单页应用的免部署分享。",
     tags: ["微信小程序", "HTML", "分发"],
+    qr: "/assets/projects/html-preview.jpg",
   },
   {
     id: "ig-saver",
@@ -102,6 +104,7 @@ const mobileProjects: Project[] = [
     image: "/assets/projects/ig-saver.jpg",
     description: "追星过程中顺手做的方便大家的小程序，链接经由 Google Cloud 中部署的 YT-DLP 解析，再传回阿里云 ECS。",
     tags: ["微信小程序", "Instagram", "解析"],
+    qr: "/assets/projects/ig-saver.jpg",
   },
   {
     id: "shunbian",
@@ -286,7 +289,16 @@ function MobileView() {
         {mobileProjects.map((project, index) => (
           <article className={`deviceCard deviceCard${index + 1}`} key={project.id}>
             <div className="deviceFrame"><div className="deviceSpeaker" /><img src={project.image} alt={`${project.title} 移动端界面`} /></div>
-            <div className="deviceCaption"><span>0{index + 1} / {project.status}</span><h2>{project.title}</h2><small>{project.type}</small></div>
+            <div className="deviceCaption">
+              <span>0{index + 1} / {project.status}</span>
+              <h2>{project.title}</h2>
+              <small>{project.type}</small>
+              <p>{project.description}</p>
+              <div className="deviceActions">
+                {project.qr && <figure className="qrBlock"><img src={project.qr} alt={`${project.title} 小程序二维码`} /><figcaption>微信扫码体验</figcaption></figure>}
+                {project.url && <a className="deviceLink" href={project.url} target="_blank" rel="noreferrer">打开项目 <ExternalArrow /></a>}
+              </div>
+            </div>
           </article>
         ))}
       </div>

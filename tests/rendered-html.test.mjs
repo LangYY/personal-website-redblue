@@ -50,6 +50,24 @@ test("groups moving-image work and uses one external link per work", async () =>
   assert.doesNotMatch(source, /打开外部链接/);
 });
 
+test("protects long moving-image labels from colliding", async () => {
+  const styles = await readFile(new URL("../app/globals.css", import.meta.url), "utf8");
+
+  assert.match(styles, /\.videoCollectionHeader[^}]*min-width: 0/);
+  assert.match(styles, /\.videoCollectionHeader h2[^}]*overflow-wrap: anywhere/);
+  assert.match(styles, /\.videoArchiveCardMeta h3[^}]*overflow-wrap: anywhere/);
+});
+
+test("places mobile project details and actions below each screenshot", async () => {
+  const source = await readFile(new URL("../app/page.tsx", import.meta.url), "utf8");
+
+  assert.match(source, /className="deviceCaption"/);
+  assert.match(source, /className="qrBlock"/);
+  assert.match(source, /className="deviceLink"/);
+  assert.match(source, /title: "HTML 预览"[\s\S]*qr:/);
+  assert.match(source, /title: "IG 链接存图"[\s\S]*qr:/);
+});
+
 test("ships site-specific metadata and an absolute social preview", async () => {
   const response = await render();
   const html = await response.text();
