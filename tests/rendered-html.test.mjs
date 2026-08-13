@@ -68,6 +68,13 @@ test("places mobile project details and actions below each screenshot", async ()
   assert.match(source, /title: "IG 链接存图"[\s\S]*qr:/);
 });
 
+test("uses the latest mobile homepage screenshots as project covers", async () => {
+  const source = await readFile(new URL("../app/page.tsx", import.meta.url), "utf8");
+
+  assert.match(source, /id: "html-preview"[\s\S]*image: "\/assets\/projects\/html-preview-home\.png"/);
+  assert.match(source, /id: "ig-saver"[\s\S]*image: "\/assets\/projects\/ig-saver-home\.png"/);
+});
+
 test("ships site-specific metadata and an absolute social preview", async () => {
   const response = await render();
   const html = await response.text();
