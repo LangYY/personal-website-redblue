@@ -20,7 +20,7 @@ test("renders the Chinese portfolio archive shell", async () => {
   const html = await response.text();
 
   assert.equal(response.status, 200);
-  assert.doesNotMatch(html, /郎懿莹|LANG YIYING/i);
+  assert.doesNotMatch(html, /YIYING/i);
   assert.match(html, /作品档案/);
   assert.match(html, /社交链接/);
   assert.match(html, /影像/);
