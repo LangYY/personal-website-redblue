@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import { readFile } from "node:fs/promises";
 import test from "node:test";
 
 async function render() {
@@ -38,6 +39,15 @@ test("renders project archive content and interactive view controls", async () =
   assert.match(html, /English Dictation/i);
   assert.doesNotMatch(html, /ComfyPilot/i);
   assert.match(html, /aria-pressed=/i);
+});
+
+test("groups moving-image work and uses one external link per work", async () => {
+  const source = await readFile(new URL("../app/page.tsx", import.meta.url), "utf8");
+
+  assert.match(source, /title: "传统影视制作"/);
+  assert.match(source, /title: "AIGC 视频创作"/);
+  assert.match(source, /className="videoArchiveCard"/);
+  assert.doesNotMatch(source, /打开外部链接/);
 });
 
 test("ships site-specific metadata and an absolute social preview", async () => {

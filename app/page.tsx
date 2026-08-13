@@ -26,11 +26,11 @@ type Project = {
 type VideoItem = {
   id: string;
   title: string;
+  group: "traditional" | "aigc";
   category: string;
   meta: string;
-  source?: string;
   poster: string;
-  href?: string;
+  href: string;
 };
 
 const socialLinks = [
@@ -119,36 +119,45 @@ const mobileProjects: Project[] = [
 const videoItems: VideoItem[] = [
   {
     id: "cherry",
-    title: "键盘外设品牌 CHERRY 70 周年 TVC",
+    title: "CHERRY 70 周年 TVC",
+    group: "traditional",
     category: "品牌广告",
-    meta: "新片场",
-    poster: "/assets/projects/frame-sonata.png",
+    meta: "新片场 / 2023",
+    poster: "/assets/projects/cherry.png",
     href: "https://www.xinpianchang.com/a12492855?channel=copyLink&from=webShare",
   },
   {
     id: "surface",
-    title: "微软 Surface Pro 9 笔记本电脑",
+    title: "Surface Pro 9 笔记本电脑",
+    group: "traditional",
     category: "产品广告",
-    meta: "新片场",
-    poster: "/assets/projects/focus-tree.png",
+    meta: "新片场 / 2023",
+    poster: "/assets/projects/surface.png",
     href: "https://www.xinpianchang.com/a12334071?from=webShare&channel=copyLink",
   },
   {
     id: "mustang",
-    title: "福特电马 Mustang Mach-E：传奇尾灯带电起跑",
+    title: "Mustang Mach-E：传奇尾灯带电起跑",
+    group: "traditional",
     category: "品牌广告",
-    meta: "新片场",
-    poster: "/assets/projects/comfypilot.png",
+    meta: "新片场 / 2023",
+    poster: "/assets/projects/mustang.png",
     href: "https://www.xinpianchang.com/a12334050?from=webShare&channel=copyLink",
   },
   {
     id: "panda",
-    title: "熊猫团团认世界 · 儿童生活百科启蒙系列",
-    category: "AI 动画",
-    meta: "优酷上线",
+    title: "熊猫团团认世界",
+    group: "aigc",
+    category: "儿童生活百科启蒙系列",
+    meta: "优酷少儿频道上线 / 10 集",
     poster: "/assets/lab/panda-tuantuan.png",
     href: "https://v.youku.com/v_show/id_XNjUyMjk5NzAxNg==.html?spm=a2hkm.8166622.PhoneSokuProgram_1.dtitle&s=edbef4e65b4d4b1aba02",
   },
+];
+
+const videoGroups = [
+  { id: "traditional" as const, title: "传统影视制作", english: "TRADITIONAL PRODUCTION" },
+  { id: "aigc" as const, title: "AIGC 视频创作", english: "AIGC VIDEO" },
 ];
 
 function ExternalArrow() {
@@ -186,9 +195,6 @@ function SocialView() {
 }
 
 function VideoView() {
-  const [activeId, setActiveId] = useState(videoItems[0].id);
-  const active = videoItems.find((item) => item.id === activeId) ?? videoItems[0];
-
   return (
     <section className="view viewVideo" aria-labelledby="video-title">
       <div className="viewIntro">
@@ -197,40 +203,26 @@ function VideoView() {
           <h1 id="video-title">影像创作</h1>
         </div>
       </div>
-      <div className="videoStage">
-        <div className="videoMain">
-          {active.source ? (
-            <video key={active.id} controls playsInline preload="metadata" poster={active.poster} src={active.source} />
-          ) : (
-            <a className="videoPosterLink" href={active.href} target="_blank" rel="noreferrer" aria-label={`打开 ${active.title} 外部视频`}>
-              <img src={active.poster} alt={`${active.title} 封面`} />
-              <span>打开外部视频 ↗</span>
-            </a>
-          )}
-          <div className="videoMainMeta">
-            <div><span className="redDot" />{active.category} / {active.meta}</div>
-            <h2>{active.title}</h2>
-            {active.href ? <a href={active.href} target="_blank" rel="noreferrer">打开外部链接 <ExternalArrow /></a> : <span className="pendingInline">外部链接待补</span>}
-          </div>
-        </div>
-        <div className="videoStrip" role="list" aria-label="影像项目">
-          {videoItems.map((item, index) => (
-            <button
-              key={item.id}
-              type="button"
-              className={item.id === activeId ? "videoThumb isActive" : "videoThumb"}
-              onClick={() => setActiveId(item.id)}
-              aria-pressed={item.id === activeId}
-            >
-              <span className="thumbImage"><img src={item.poster} alt="" /></span>
-              <span className="thumbText"><small>0{index + 1} / {item.category}</small><b>{item.title}</b><em>{item.meta}</em></span>
-            </button>
-          ))}
-        </div>
-      </div>
-      <div className="channelRail">
-        <span>影像记录 / 传统制作与 AIGC</span>
-        <a href="https://www.xinpianchang.com/u13462261?searchKw=buzzegg&from=search_post&channel=copyLink&from=webShare" target="_blank" rel="noreferrer">打开新片场 <ExternalArrow /></a>
+      <div className="videoArchive">
+        {videoGroups.map((group, groupIndex) => {
+          const items = videoItems.filter((item) => item.group === group.id);
+          return (
+            <section className={`videoCollection videoCollection-${group.id}`} key={group.id} aria-labelledby={`${group.id}-title`}>
+              <div className="videoCollectionHeader">
+                <div><span>0{groupIndex + 1}</span><h2 id={`${group.id}-title`}>{group.title}</h2></div>
+                <span>{group.english} / {items.length} WORK{items.length === 1 ? "" : "S"}</span>
+              </div>
+              <div className="videoCardGrid">
+                {items.map((item, index) => (
+                  <a className="videoArchiveCard" key={item.id} href={item.href} target="_blank" rel="noreferrer">
+                    <div className="videoArchiveImage"><img src={item.poster} alt={`${item.title} 封面`} /><span>OPEN ↗</span></div>
+                    <div className="videoArchiveCardMeta"><span>0{index + 1} / {item.category}</span><h3>{item.title}</h3><small>{item.meta}</small></div>
+                  </a>
+                ))}
+              </div>
+            </section>
+          );
+        })}
       </div>
     </section>
   );

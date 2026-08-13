@@ -125,31 +125,24 @@ button:focus-visible, a:focus-visible { outline: 2px solid var(--red); outline-o
 .pendingMark { align-self: end; color: var(--red); font-size: 1.4rem; }
 
 /* 02 video */
-.videoStage { display: grid; grid-template-columns: minmax(0, 1fr) minmax(230px, 29%); gap: 18px; align-items: start; }
-.videoMain { min-width: 0; background: var(--ink); color: var(--paper-light); border: 1px solid var(--ink); }
-.videoMain video { display: block; width: 100%; aspect-ratio: 16 / 9; background: #0d0d0d; object-fit: contain; }
-.videoPosterLink { position: relative; display: block; aspect-ratio: 16 / 9; overflow: hidden; background: #0d0d0d; }
-.videoPosterLink img { width: 100%; height: 100%; display: block; object-fit: cover; }
-.videoPosterLink span { position: absolute; right: 16px; bottom: 14px; padding: 7px 10px; color: var(--paper-light); background: var(--red); font: 500 .6rem var(--mono); }
-.videoMainMeta { display: grid; grid-template-columns: 1fr auto; gap: 7px 16px; padding: 17px; }
-.videoMainMeta > div, .videoMainMeta > a, .pendingInline { font: 500 .6rem var(--mono); }
-.videoMainMeta > div { grid-column: 1 / -1; color: #c5c1b6; }
-.redDot { display: inline-block; width: 7px; height: 7px; margin-right: 7px; border-radius: 50%; background: var(--red); }
-.videoMainMeta h2 { grid-column: 1; margin: 0; font: 700 clamp(1.7rem, 3vw, 3.5rem)/.9 var(--sans); letter-spacing: -.07em; }
-.videoMainMeta a { grid-column: 2; grid-row: 3; align-self: end; color: var(--paper-light); border-bottom: 1px solid currentColor; }
-.pendingInline { color: var(--muted); }
-.videoMainMeta .pendingInline { grid-column: 2; grid-row: 3; align-self: end; }
-.videoStrip { display: grid; gap: 9px; }
-.videoThumb { display: grid; grid-template-columns: 94px 1fr; gap: 10px; padding: 0; text-align: left; cursor: pointer; background: transparent; border: 0; border-bottom: 1px solid var(--line); }
-.thumbImage { display: block; aspect-ratio: 16 / 10; overflow: hidden; background: #d2c8b8; }
-.thumbImage img { width: 100%; height: 100%; display: block; object-fit: cover; filter: grayscale(.85); transition: filter 180ms ease; }
-.videoThumb:hover .thumbImage img, .videoThumb.isActive .thumbImage img { filter: none; }
-.thumbText { display: grid; align-content: center; gap: 5px; padding: 6px 0; }
-.thumbText small, .thumbText em { color: var(--muted); font: 500 .52rem var(--mono); font-style: normal; }
-.thumbText b { font-size: .84rem; line-height: 1.05; }
-.videoThumb.isActive .thumbText b { color: var(--red-dark); }
-.channelRail { display: flex; justify-content: space-between; gap: 15px; margin-top: 32px; padding: 11px 0; border-top: 1px solid var(--ink); border-bottom: 1px solid var(--ink); font: 500 .6rem var(--mono); }
-.channelRail a { color: var(--blue); }
+.videoArchive { display: grid; gap: clamp(48px, 8vw, 92px); }
+.videoCollection { min-width: 0; }
+.videoCollectionHeader { display: flex; justify-content: space-between; align-items: end; gap: 22px; padding-bottom: 13px; border-bottom: 1px solid var(--ink); }
+.videoCollectionHeader > div { display: flex; align-items: baseline; gap: 17px; }
+.videoCollectionHeader > div > span { color: var(--red-dark); font: 500 .64rem var(--mono); }
+.videoCollectionHeader h2 { margin: 0; font: 700 clamp(1.7rem, 3.5vw, 3.6rem)/.9 var(--sans); letter-spacing: -.075em; }
+.videoCollectionHeader > span { color: var(--muted); font: 500 .56rem var(--mono); }
+.videoCardGrid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 17px; padding-top: 17px; }
+.videoArchiveCard { min-width: 0; color: var(--ink); }
+.videoArchiveImage { position: relative; aspect-ratio: 16 / 10; overflow: hidden; background: var(--ink); border: 1px solid var(--ink); }
+.videoArchiveImage img { width: 100%; height: 100%; display: block; object-fit: cover; filter: saturate(.85); transition: transform 260ms ease, filter 260ms ease; }
+.videoArchiveImage span { position: absolute; right: 10px; bottom: 10px; padding: 6px 8px; color: var(--paper-light); background: var(--red); font: 500 .54rem var(--mono); }
+.videoArchiveCard:hover .videoArchiveImage img { transform: scale(1.035); filter: saturate(1.05); }
+.videoArchiveCardMeta { display: grid; gap: 7px; padding-top: 13px; }
+.videoArchiveCardMeta > span, .videoArchiveCardMeta small { color: var(--muted); font: 500 .56rem var(--mono); }
+.videoArchiveCardMeta h3 { margin: 0; font-size: clamp(1.05rem, 1.8vw, 1.45rem); line-height: 1.03; }
+.videoCollection-aigc .videoCardGrid { grid-template-columns: minmax(0, .68fr) minmax(260px, .32fr); }
+.videoCollection-aigc .videoArchiveCard:first-child .videoArchiveImage { aspect-ratio: 16 / 9; }
 
 /* 03 web */
 .webArchive { display: grid; grid-template-columns: minmax(0, 1.22fr) minmax(260px, .78fr); gap: clamp(22px, 4vw, 58px); align-items: start; }
@@ -196,10 +189,8 @@ button:focus-visible, a:focus-visible { outline: 2px solid var(--red); outline-o
   .portfolioBody { grid-template-columns: 205px minmax(0, 1fr); }
   .categoryRail { padding-inline: 18px; }
   .topbar { padding-inline: 18px; }
-  .videoStage, .webArchive { grid-template-columns: 1fr; }
-  .videoStrip { grid-template-columns: repeat(5, minmax(125px, 1fr)); overflow-x: auto; }
-  .videoThumb { display: block; border: 0; }
-  .thumbText { padding-top: 8px; }
+  .webArchive { grid-template-columns: 1fr; }
+  .videoCardGrid, .videoCollection-aigc .videoCardGrid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 
 @media (max-width: 720px) {
@@ -226,12 +217,10 @@ button:focus-visible, a:focus-visible { outline: 2px solid var(--red); outline-o
   .view h1 { font-size: clamp(3.8rem, 19vw, 6rem); }
   .socialGrid { grid-template-columns: 1fr; }
   .socialCard { min-height: 160px; }
-  .videoStrip { grid-template-columns: repeat(5, 132px); gap: 10px; margin-top: 5px; overflow-x: auto; padding-bottom: 8px; }
-  .videoMainMeta { grid-template-columns: 1fr; }
-  .videoMainMeta h2 { grid-column: 1; }
-  .videoMainMeta a, .videoMainMeta .pendingInline { grid-column: 1; grid-row: auto; justify-self: start; margin-top: 7px; }
-  .channelRail { display: block; line-height: 1.7; }
-  .channelRail a { display: block; margin-top: 8px; }
+  .videoCollectionHeader { display: block; }
+  .videoCollectionHeader > span { display: block; margin-top: 11px; }
+  .videoCollectionHeader > div { gap: 10px; }
+  .videoCardGrid, .videoCollection-aigc .videoCardGrid { grid-template-columns: 1fr; }
   .featureImage { aspect-ratio: 1 / .92; }
   .featureCopy h2 { font-size: clamp(2.6rem, 15vw, 5rem); }
   .projectRow { grid-template-columns: 27px 1fr; }
