@@ -35,7 +35,8 @@ test("renders project archive content and interactive view controls", async () =
 
   assert.match(html, /Frame Sonata/i);
   assert.match(html, /Focus Tree/i);
-  assert.match(html, /ComfyPilot/i);
+  assert.match(html, /English Dictation/i);
+  assert.doesNotMatch(html, /ComfyPilot/i);
   assert.match(html, /aria-pressed=/i);
 });
 

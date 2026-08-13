@@ -14,7 +14,7 @@ type Category = {
 type Project = {
   id: string;
   title: string;
-  year: string;
+  meta: string;
   type: string;
   status: string;
   image: string;
@@ -27,21 +27,21 @@ type VideoItem = {
   id: string;
   title: string;
   category: string;
-  year: string;
+  meta: string;
   source?: string;
   poster: string;
   href?: string;
 };
 
 const socialLinks = [
-  { id: "xiaohongshu", number: "01", label: "小红书", english: "XIAOHONGSHU", handle: "@xhslink", href: "https://xhslink.cn/m/9tKm5K7ACjg" },
-  { id: "x", number: "02", label: "X", english: "X / TWITTER", handle: "@LangYi31007", href: "https://x.com/LangYi31007" },
-  { id: "github", number: "03", label: "GitHub", english: "CODE / REPOSITORIES", handle: "@LangYY", href: "https://github.com/LangYY" },
+  { id: "x", number: "01", label: "X", english: "X / TWITTER", handle: "@LangYi31007", href: "https://x.com/LangYi31007" },
+  { id: "github", number: "02", label: "GitHub", english: "CODE / REPOSITORIES", handle: "@LangYY", href: "https://github.com/LangYY" },
+  { id: "xiaohongshu", number: "03", label: "小红书", english: "XIAOHONGSHU", handle: "@xhslink", href: "https://xhslink.cn/m/9tKm5K7ACjg" },
 ];
 
 const categories: Category[] = [
   { id: "social", number: "01", label: "社交链接", english: "ELSEWHERE" },
-  { id: "video", number: "02", label: "影像", english: "MOVING IMAGE" },
+  { id: "video", number: "02", label: "影像创作", english: "MOVING IMAGE" },
   { id: "web", number: "03", label: "网页", english: "WEB" },
   { id: "mobile", number: "04", label: "移动端", english: "MOBILE" },
 ];
@@ -50,122 +50,104 @@ const webProjects: Project[] = [
   {
     id: "focus-tree",
     title: "Focus Tree",
-    year: "2024—现在",
-    type: "个人系统 / AI 工作流",
+    meta: "自由职业者 / 内容创作者",
+    type: "个人系统 / AI 助手",
     status: "已上线",
     image: "/assets/projects/focus-tree.png",
-    description: "给自由职业者和内容创作者使用的外脑、个人助理和成长地图。",
-    tags: ["个人系统", "AI 助手", "注意力"],
+    description: "给自由职业者和内容创作者使用的“外脑、个人助理和成长地图”。",
+    tags: ["个人系统", "AI 助手", "成长地图"],
     url: "https://focus.buzzegg.cn/",
   },
   {
     id: "frame-sonata",
     title: "Frame Sonata",
-    year: "2025—现在",
+    meta: "已上线 / 商业化持续迭代",
     type: "AI 视频 / 制作工作台",
-    status: "商业化迭代",
+    status: "已上线",
     image: "/assets/projects/frame-sonata.png",
-    description: "把分镜从创建延伸到演示和制作推进，减少整理与沟通成本。",
+    description: "把分镜从创建延伸到演示和制作推进，支持整理 storyboard / pitch deck，并记录场景、道具等制作信息。",
     tags: ["AI 视频", "工作流", "制作"],
     url: "https://frame-sonata.buzzegg.cn/",
   },
   {
     id: "dictation",
-    title: "英语听写练习工具",
-    year: "2025—现在",
-    type: "学习工具 / 语音工作流",
+    title: "English Dictation",
+    meta: "已部署 / 小范围试用",
+    type: "英语学习 / 语音工具",
     status: "小范围试用",
     image: "/assets/projects/dictation.png",
-    description: "支持本地音频、在线视频链接、智能转录和逐句播放器的英语学习工具。",
-    tags: ["学习工具", "语音", "练习"],
+    description: "一个基于本地音频、在线视频链接和逐句播放器的轻量英语学习工具，独立完成并已部署。",
+    tags: ["英语学习", "本地音频", "逐句播放器"],
     url: "https://dictation.buzzegg.cn/",
-  },
-  {
-    id: "comfypilot",
-    title: "ComfyPilot",
-    year: "2025—现在",
-    type: "本地 AI 视频 / 生成工作台",
-    status: "工作中",
-    image: "/assets/projects/comfypilot.png",
-    description: "把 workflow、素材、prompt、队列、历史和失败重试组织进一个本地 AI 视频工作台。",
-    tags: ["AI 视频", "本地工具", "生产流程"],
   },
 ];
 
 const mobileProjects: Project[] = [
   {
     id: "html-preview",
-    title: "HTML Preview",
-    year: "2025—现在",
-    type: "微信小程序 / 网页分发",
-    status: "已上线",
+    title: "HTML 预览",
+    meta: "微信小程序",
+    type: "微信小程序 / HTML 分发",
+    status: "项目记录",
     image: "/assets/projects/html-preview.jpg",
-    description: "让 HTML、小游戏、小工具和单页应用免部署分享。",
-    tags: ["AI 产品", "小程序", "分发"],
+    description: "从个人预览逐步扩展到 HTML Slides、网页、小游戏、小工具和单页应用的免部署分享。",
+    tags: ["微信小程序", "HTML", "分发"],
   },
   {
     id: "ig-saver",
     title: "IG 链接存图",
-    year: "2025",
-    type: "微信小程序 / 工具",
-    status: "已上线",
+    meta: "微信小程序",
+    type: "微信小程序 / 链接解析",
+    status: "项目记录",
     image: "/assets/projects/ig-saver.jpg",
-    description: "把 Instagram 链接转换成手机里可直接保存的图片。",
-    tags: ["小程序", "解析", "工具"],
+    description: "追星过程中顺手做的方便大家的小程序，链接经由 Google Cloud 中部署的 YT-DLP 解析，再传回阿里云 ECS。",
+    tags: ["微信小程序", "Instagram", "解析"],
   },
   {
     id: "shunbian",
     title: "顺便",
-    year: "2026",
+    meta: "Personal Agent",
     type: "移动端 / Personal Agent",
-    status: "MVP",
+    status: "项目记录",
     image: "/assets/projects/shunbian.png",
-    description: "管理那些有机会可以做、但不值得专门安排的事情。",
-    tags: ["Personal Agent", "机会型意图", "生活"],
+    description: "生活中那些有机会可以做、但不值得专门安排的事情；当机会出现时，重新想起曾经产生过的意图。",
+    tags: ["Personal Agent", "机会型意图", "生活场景"],
     url: "https://shunbian-853b693f.eazo.dev/",
   },
 ];
 
 const videoItems: VideoItem[] = [
   {
-    id: "panda",
-    title: "熊猫团团认世界",
-    category: "AI 动画",
-    year: "2026",
-    poster: "/assets/lab/panda-tuantuan.png",
-    href: "https://v.youku.com/v_show/id_XNjUyMjk5NzAxNg==.html?spm=a2hkm.8166622.PhoneSokuProgram_1.dtitle&s=edbef4e65b4d4b1aba02",
-  },
-  {
     id: "cherry",
-    title: "CHERRY 70 周年 TVC",
+    title: "键盘外设品牌 CHERRY 70 周年 TVC",
     category: "品牌广告",
-    year: "2023",
+    meta: "新片场",
     poster: "/assets/projects/frame-sonata.png",
     href: "https://www.xinpianchang.com/a12492855?channel=copyLink&from=webShare",
   },
   {
     id: "surface",
-    title: "Microsoft Surface Pro 9",
+    title: "微软 Surface Pro 9 笔记本电脑",
     category: "产品广告",
-    year: "2023",
+    meta: "新片场",
     poster: "/assets/projects/focus-tree.png",
     href: "https://www.xinpianchang.com/a12334071?from=webShare&channel=copyLink",
   },
   {
     id: "mustang",
-    title: "Mustang Mach-E",
+    title: "福特电马 Mustang Mach-E：传奇尾灯带电起跑",
     category: "品牌广告",
-    year: "2023",
+    meta: "新片场",
     poster: "/assets/projects/comfypilot.png",
     href: "https://www.xinpianchang.com/a12334050?from=webShare&channel=copyLink",
   },
   {
-    id: "panda-process",
-    title: "熊猫团团认世界",
-    category: "AIGC 动画",
-    year: "2026",
+    id: "panda",
+    title: "熊猫团团认世界 · 儿童生活百科启蒙系列",
+    category: "AI 动画",
+    meta: "优酷上线",
     poster: "/assets/lab/panda-tuantuan.png",
-    href: "https://v.youku.com/v_show/id_XNjUyMjk5NzAxNg==.html?spm=a2hkm.8166622.PhoneSokuProgram_1.dchapters_1&s=edbef4e65b4d4b1aba02",
+    href: "https://v.youku.com/v_show/id_XNjUyMjk5NzAxNg==.html?spm=a2hkm.8166622.PhoneSokuProgram_1.dtitle&s=edbef4e65b4d4b1aba02",
   },
 ];
 
@@ -212,7 +194,7 @@ function VideoView() {
       <div className="viewIntro">
         <div>
           <p className="viewEyebrow">02 / MOVING IMAGE</p>
-          <h1 id="video-title">影像</h1>
+          <h1 id="video-title">影像创作</h1>
         </div>
       </div>
       <div className="videoStage">
@@ -226,7 +208,7 @@ function VideoView() {
             </a>
           )}
           <div className="videoMainMeta">
-            <div><span className="redDot" />{active.category} / {active.year}</div>
+            <div><span className="redDot" />{active.category} / {active.meta}</div>
             <h2>{active.title}</h2>
             {active.href ? <a href={active.href} target="_blank" rel="noreferrer">打开外部链接 <ExternalArrow /></a> : <span className="pendingInline">外部链接待补</span>}
           </div>
@@ -241,7 +223,7 @@ function VideoView() {
               aria-pressed={item.id === activeId}
             >
               <span className="thumbImage"><img src={item.poster} alt="" /></span>
-              <span className="thumbText"><small>0{index + 1} / {item.category}</small><b>{item.title}</b><em>{item.year}</em></span>
+              <span className="thumbText"><small>0{index + 1} / {item.category}</small><b>{item.title}</b><em>{item.meta}</em></span>
             </button>
           ))}
         </div>
@@ -268,7 +250,7 @@ function WebView() {
       </div>
       <div className="webArchive">
         <div className="webFeature">
-          <div className="featureTop"><span>SELECTED / {active.year}</span><span>{active.status}</span></div>
+          <div className="featureTop"><span>SELECTED / {active.meta}</span><span>{active.status}</span></div>
           <div className="featureImage"><img src={active.image} alt={`${active.title} 项目封面`} /></div>
           <div className="featureCopy">
             <p>{active.type}</p>
