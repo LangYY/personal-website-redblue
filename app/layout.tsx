@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import { headers } from "next/headers";
 import "./globals.css";
 
-const title = "郎懿莹｜作品档案";
-const description = "郎懿莹的中文作品档案：影像、网页、移动端工具与正在形成的实验。";
+const title = "LY｜作品档案";
+const description = "LY 的中文作品档案：影像、网页、移动端工具与正在形成的实验。";
 
 export async function generateMetadata(): Promise<Metadata> {
   const requestHeaders = await headers();
@@ -21,7 +21,7 @@ export async function generateMetadata(): Promise<Metadata> {
       title,
       description,
       type: "website",
-      images: [{ url: image, width: 1678, height: 943, alt: "郎懿莹｜作品档案" }],
+      images: [{ url: image, width: 1678, height: 943, alt: "LY｜作品档案" }],
     },
     twitter: { card: "summary_large_image", title, description, images: [image] },
   };

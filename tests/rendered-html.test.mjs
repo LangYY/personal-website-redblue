@@ -20,7 +20,7 @@ test("renders the Chinese portfolio archive shell", async () => {
   const html = await response.text();
 
   assert.equal(response.status, 200);
-  assert.match(html, /郎懿莹/);
+  assert.doesNotMatch(html, /郎懿莹|LANG YIYING/i);
   assert.match(html, /作品档案/);
   assert.match(html, /社交链接/);
   assert.match(html, /影像/);
@@ -44,7 +44,7 @@ test("ships site-specific metadata and an absolute social preview", async () => 
   const response = await render();
   const html = await response.text();
 
-  assert.match(html, /<title>郎懿莹｜作品档案<\/title>/i);
+  assert.match(html, /<title>LY｜作品档案<\/title>/i);
   assert.match(html, /property="og:image" content="http:\/\/localhost\/og\.png"/i);
   assert.match(html, /name="twitter:card" content="summary_large_image"/i);
 });

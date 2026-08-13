@@ -310,7 +310,7 @@ export default function Home() {
     <div className="portfolioShell">
       <header className="topbar">
         <a className="brandMark" href="#top" aria-label="回到顶部">LY</a>
-        <div className="topIdentity"><b>郎懿莹</b><span>AI 产品 / 影像 / 工具</span></div>
+        <div className="topIdentity"><b>LY</b><span>AI 产品 / 影像 / 工具</span></div>
         <div className="topMeta"><span>上海 / 中国</span><span>作品档案 2026</span></div>
       </header>
 
@@ -335,12 +335,12 @@ export default function Home() {
         </aside>
 
         <main className="contentColumn">
-          <div className="contentTopline"><span>郎懿莹 / LANG YIYING</span><span>VIEW / {active.english}</span></div>
+          <div className="contentTopline"><span>LY / PORTFOLIO</span><span>VIEW / {active.english}</span></div>
           {activeCategory === "social" && <SocialView />}
           {activeCategory === "video" && <VideoView />}
           {activeCategory === "web" && <WebView />}
           {activeCategory === "mobile" && <MobileView />}
-          <footer className="siteFooter"><span>© 2026 LANG YIYING</span><a href="mailto:lang.soda@gmail.com">lang.soda@gmail.com</a><span>中文版本 / v.01</span></footer>
+          <footer className="siteFooter"><span>© 2026 LY</span><a href="mailto:lang.soda@gmail.com">lang.soda@gmail.com</a><span>中文版本 / v.01</span></footer>
         </main>
       </div>
     </div>
