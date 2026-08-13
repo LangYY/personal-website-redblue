@@ -33,11 +33,20 @@ test("renders project archive content and interactive view controls", async () =
   const response = await render();
   const html = await response.text();
 
-  assert.match(html, /HTML Preview/i);
   assert.match(html, /Frame Sonata/i);
   assert.match(html, /Focus Tree/i);
   assert.match(html, /ComfyPilot/i);
   assert.match(html, /aria-pressed=/i);
+});
+
+test("includes the confirmed social links", async () => {
+  const response = await render();
+  const html = await response.text();
+
+  assert.match(html, /社交链接/);
+  assert.match(html, /LangYi31007/);
+  assert.match(html, /xhslink/);
+  assert.match(html, /github\.com\\?\/LangYY/);
 });
 
 test("ships site-specific metadata and an absolute social preview", async () => {

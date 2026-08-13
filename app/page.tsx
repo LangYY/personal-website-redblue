@@ -31,10 +31,16 @@ type VideoItem = {
   chinese: string;
   category: string;
   year: string;
-  source: string;
+  source?: string;
   poster: string;
   href?: string;
 };
+
+const socialLinks = [
+  { id: "xiaohongshu", number: "01", label: "小红书", english: "XIAOHONGSHU", handle: "@xhslink", href: "https://xhslink.cn/m/9tKm5K7ACjg" },
+  { id: "x", number: "02", label: "X", english: "X / TWITTER", handle: "@LangYi31007", href: "https://x.com/LangYi31007" },
+  { id: "github", number: "03", label: "GitHub", english: "CODE / REPOSITORIES", handle: "@LangYY", href: "https://github.com/LangYY" },
+];
 
 const categories: Category[] = [
   { id: "social", number: "01", label: "社交链接", english: "ELSEWHERE", note: "在别处继续" },
@@ -45,15 +51,16 @@ const categories: Category[] = [
 
 const webProjects: Project[] = [
   {
-    id: "html-preview",
-    title: "HTML Preview",
-    chinese: "让生成的网页被看见、分享和交付",
-    year: "2025—现在",
-    type: "微信小程序 / 网页分发",
+    id: "focus-tree",
+    title: "Focus Tree",
+    chinese: "给太多可能性找到当前重心",
+    year: "2024—现在",
+    type: "个人系统 / AI 工作流",
     status: "已上线",
-    image: "/assets/projects/html-preview.jpg",
-    description: "一个把 AI 生成的 HTML、Slides 和前端 Demo 变成可预览、可分享交付物的小程序。",
-    tags: ["AI 产品", "分发", "预览"],
+    image: "/assets/projects/focus-tree.png",
+    description: "给自由职业者和内容创作者使用的外脑、个人助理和成长地图。",
+    tags: ["个人系统", "AI 助手", "注意力"],
+    url: "https://focus.buzzegg.cn/",
   },
   {
     id: "frame-sonata",
@@ -63,19 +70,21 @@ const webProjects: Project[] = [
     type: "AI 视频 / 制作工作台",
     status: "商业化迭代",
     image: "/assets/projects/frame-sonata.png",
-    description: "把分镜、提案、场景、道具和制作信息放进同一个可继续推进的工作台。",
+    description: "把分镜从创建延伸到演示和制作推进，减少整理与沟通成本。",
     tags: ["AI 视频", "工作流", "制作"],
+    url: "https://frame-sonata.buzzegg.cn/",
   },
   {
-    id: "focus-tree",
-    title: "Focus Tree",
-    chinese: "给太多可能性找到当前重心",
-    year: "2024—现在",
-    type: "个人系统 / AI 工作流",
-    status: "实验中",
-    image: "/assets/projects/focus-tree.png",
-    description: "用一棵会变化的项目树，把目标、项目、进展和下一个行动放在同一张地图上。",
-    tags: ["个人系统", "AI 助手", "注意力"],
+    id: "dictation",
+    title: "英语听写练习工具",
+    chinese: "把听写变成可以反复回看的练习",
+    year: "2025—现在",
+    type: "学习工具 / 语音工作流",
+    status: "小范围试用",
+    image: "/assets/projects/dictation.png",
+    description: "支持本地音频、在线视频链接、智能转录和逐句播放器的英语学习工具。",
+    tags: ["学习工具", "语音", "练习"],
+    url: "https://dictation.buzzegg.cn/",
   },
   {
     id: "comfypilot",
@@ -88,33 +97,43 @@ const webProjects: Project[] = [
     description: "把 workflow、素材、prompt、队列、历史和失败重试组织进一个本地 AI 视频工作台。",
     tags: ["AI 视频", "本地工具", "生产流程"],
   },
-  {
-    id: "wavetables",
-    title: "Wavetables",
-    chinese: "声音结构如何变成运动与质地",
-    year: "2024",
-    type: "生成式视觉 / 视听实验",
-    status: "实验",
-    image: "/assets/lab/wavetables.jpg",
-    description: "一项位于产品思维与影像创作交界处的声音、波形和视觉实验。",
-    tags: ["生成式视觉", "声音", "实验"],
-  },
 ];
 
 const mobileProjects: Project[] = [
-  webProjects[0],
   {
-    id: "dictation",
-    title: "英语听写练习工具",
-    chinese: "把听写变成可以反复回看的练习",
+    id: "html-preview",
+    title: "HTML Preview",
+    chinese: "让生成的网页被看见、分享和交付",
     year: "2025—现在",
-    type: "移动学习工具",
-    status: "原型",
-    image: "/assets/projects/dictation.png",
-    description: "支持多来源音频、智能转录、逐句播放和分段批改的听写练习工具。",
-    tags: ["学习工具", "语音", "练习"],
+    type: "微信小程序 / 网页分发",
+    status: "已上线",
+    image: "/assets/projects/html-preview.jpg",
+    description: "让 HTML、小游戏、小工具和单页应用免部署分享。",
+    tags: ["AI 产品", "小程序", "分发"],
   },
-  webProjects[2],
+  {
+    id: "ig-saver",
+    title: "IG 链接存图",
+    chinese: "顺手做的链接解析与存图工具",
+    year: "2025",
+    type: "微信小程序 / 工具",
+    status: "已上线",
+    image: "/assets/projects/ig-saver.jpg",
+    description: "把 Instagram 链接转换成手机里可直接保存的图片。",
+    tags: ["小程序", "解析", "工具"],
+  },
+  {
+    id: "shunbian",
+    title: "顺便",
+    chinese: "当机会出现时，想起自己曾经想做的事",
+    year: "2026",
+    type: "移动端 / Personal Agent",
+    status: "MVP",
+    image: "/assets/projects/shunbian.png",
+    description: "管理那些有机会可以做、但不值得专门安排的事情。",
+    tags: ["Personal Agent", "机会型意图", "生活"],
+    url: "https://shunbian-853b693f.eazo.dev/",
+  },
 ];
 
 const videoItems: VideoItem[] = [
@@ -124,52 +143,45 @@ const videoItems: VideoItem[] = [
     chinese: "AI 动画儿童系列",
     category: "AI 动画",
     year: "2026",
-    source: "/assets/videos/demo-01.mp4",
-    poster: "/assets/images/video-poster-01.jpg",
+    poster: "/assets/lab/panda-tuantuan.png",
     href: "https://v.youku.com/v_show/id_XNjUyMjk5NzAxNg==.html?spm=a2hkm.8166622.PhoneSokuProgram_1.dtitle&s=edbef4e65b4d4b1aba02",
   },
   {
-    id: "bloom",
-    title: "Bloom Drift",
-    chinese: "生成式运动研究",
-    category: "动效",
-    year: "2025",
-    source: "/assets/videos/demo-02.mp4",
-    poster: "/assets/images/video-thumb-02.jpg",
+    id: "cherry",
+    title: "CHERRY 70 周年 TVC",
+    chinese: "传统影视制作 / 品牌广告",
+    category: "品牌广告",
+    year: "2023",
+    poster: "/assets/projects/frame-sonata.png",
+    href: "https://www.xinpianchang.com/a12492855?channel=copyLink&from=webShare",
   },
   {
-    id: "orbit",
-    title: "Orbit",
-    chinese: "形状、节奏和空间",
-    category: "视觉实验",
-    year: "2025",
-    source: "/assets/videos/demo-03.mp4",
-    poster: "/assets/images/video-thumb-03.jpg",
+    id: "surface",
+    title: "Microsoft Surface Pro 9",
+    chinese: "传统影视制作 / 产品广告",
+    category: "产品广告",
+    year: "2023",
+    poster: "/assets/projects/focus-tree.png",
+    href: "https://www.xinpianchang.com/a12334071?from=webShare&channel=copyLink",
   },
   {
-    id: "process",
-    title: "Process",
-    chinese: "从草图到成片",
-    category: "过程记录",
-    year: "2025",
-    source: "/assets/videos/demo-04.mp4",
-    poster: "/assets/images/video-thumb-04.jpg",
+    id: "mustang",
+    title: "Mustang Mach-E",
+    chinese: "传奇尾灯带电起跑",
+    category: "品牌广告",
+    year: "2023",
+    poster: "/assets/projects/comfypilot.png",
+    href: "https://www.xinpianchang.com/a12334050?from=webShare&channel=copyLink",
   },
   {
-    id: "prototype",
-    title: "Prototype",
-    chinese: "正在施工的影像工具",
-    category: "原型",
-    year: "2024",
-    source: "/assets/videos/demo-05.mp4",
-    poster: "/assets/images/video-thumb-05.jpg",
+    id: "panda-process",
+    title: "熊猫团团认世界",
+    chinese: "10 集 AI 动画儿童系列",
+    category: "AIGC 动画",
+    year: "2026",
+    poster: "/assets/lab/panda-tuantuan.png",
+    href: "https://v.youku.com/v_show/id_XNjUyMjk5NzAxNg==.html?spm=a2hkm.8166622.PhoneSokuProgram_1.dchapters_1&s=edbef4e65b4d4b1aba02",
   },
-];
-
-const socialLinks = [
-  { id: "xiaohongshu", number: "01", label: "小红书", english: "XIAOHONGSHU", handle: "链接待补", href: "" },
-  { id: "x", number: "02", label: "X", english: "X / TWITTER", handle: "链接待补", href: "" },
-  { id: "github", number: "03", label: "GitHub", english: "CODE / REPOSITORIES", handle: "链接待补", href: "" },
 ];
 
 function ExternalArrow() {
@@ -205,7 +217,7 @@ function SocialView() {
       </div>
       <div className="socialNote">
         <span>NOTES / 01</span>
-        <p>链接会在确认公开地址后补上。暂时留白也是档案的一部分。</p>
+        <p>作品之外的更新、代码和线索。知道去哪里找，就能继续往下走。</p>
       </div>
     </section>
   );
@@ -226,7 +238,14 @@ function VideoView() {
       </div>
       <div className="videoStage">
         <div className="videoMain">
-          <video key={active.id} controls playsInline preload="metadata" poster={active.poster} src={active.source} />
+          {active.source ? (
+            <video key={active.id} controls playsInline preload="metadata" poster={active.poster} src={active.source} />
+          ) : (
+            <a className="videoPosterLink" href={active.href} target="_blank" rel="noreferrer" aria-label={`打开 ${active.title} 外部视频`}>
+              <img src={active.poster} alt={`${active.title} 封面`} />
+              <span>打开外部视频 ↗</span>
+            </a>
+          )}
           <div className="videoMainMeta">
             <div><span className="redDot" />{active.category} / {active.year}</div>
             <h2>{active.title}</h2>
@@ -250,8 +269,8 @@ function VideoView() {
         </div>
       </div>
       <div className="channelRail">
-        <span>B站频道 / 可补充更多影像</span>
-        <a href="https://space.bilibili.com/1018472242?spm_id_from=333.788.upinfo.detail.click" target="_blank" rel="noreferrer">打开 Bilibili <ExternalArrow /></a>
+        <span>影像记录 / 传统制作与 AIGC</span>
+        <a href="https://www.xinpianchang.com/u13462261?searchKw=buzzegg&from=search_post&channel=copyLink&from=webShare" target="_blank" rel="noreferrer">打开新片场 <ExternalArrow /></a>
       </div>
     </section>
   );

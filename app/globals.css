@@ -137,6 +137,9 @@ button:focus-visible, a:focus-visible { outline: 2px solid var(--red); outline-o
 .videoStage { display: grid; grid-template-columns: minmax(0, 1fr) minmax(230px, 29%); gap: 18px; align-items: start; }
 .videoMain { min-width: 0; background: var(--ink); color: var(--paper-light); border: 1px solid var(--ink); }
 .videoMain video { display: block; width: 100%; aspect-ratio: 16 / 9; background: #0d0d0d; object-fit: contain; }
+.videoPosterLink { position: relative; display: block; aspect-ratio: 16 / 9; overflow: hidden; background: #0d0d0d; }
+.videoPosterLink img { width: 100%; height: 100%; display: block; object-fit: cover; }
+.videoPosterLink span { position: absolute; right: 16px; bottom: 14px; padding: 7px 10px; color: var(--paper-light); background: var(--red); font: 500 .6rem var(--mono); }
 .videoMainMeta { display: grid; grid-template-columns: 1fr auto; gap: 7px 16px; padding: 17px; }
 .videoMainMeta > div, .videoMainMeta > a, .pendingInline { font: 500 .6rem var(--mono); }
 .videoMainMeta > div { grid-column: 1 / -1; color: #c5c1b6; }
