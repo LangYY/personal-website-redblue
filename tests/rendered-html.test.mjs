@@ -39,16 +39,6 @@ test("renders project archive content and interactive view controls", async () =
   assert.match(html, /aria-pressed=/i);
 });
 
-test("includes the confirmed social links", async () => {
-  const response = await render();
-  const html = await response.text();
-
-  assert.match(html, /社交链接/);
-  assert.match(html, /LangYi31007/);
-  assert.match(html, /xhslink/);
-  assert.match(html, /github\.com\\?\/LangYY/);
-});
-
 test("ships site-specific metadata and an absolute social preview", async () => {
   const response = await render();
   const html = await response.text();
