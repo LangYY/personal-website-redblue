@@ -9,13 +9,11 @@ type Category = {
   number: string;
   label: string;
   english: string;
-  note: string;
 };
 
 type Project = {
   id: string;
   title: string;
-  chinese: string;
   year: string;
   type: string;
   status: string;
@@ -28,7 +26,6 @@ type Project = {
 type VideoItem = {
   id: string;
   title: string;
-  chinese: string;
   category: string;
   year: string;
   source?: string;
@@ -43,17 +40,16 @@ const socialLinks = [
 ];
 
 const categories: Category[] = [
-  { id: "social", number: "01", label: "社交链接", english: "ELSEWHERE", note: "在别处继续" },
-  { id: "video", number: "02", label: "影像", english: "MOVING IMAGE", note: "视频与动效" },
-  { id: "web", number: "03", label: "网页", english: "WEB", note: "网页与互动产品" },
-  { id: "mobile", number: "04", label: "移动端", english: "MOBILE", note: "小程序与手机 App" },
+  { id: "social", number: "01", label: "社交链接", english: "ELSEWHERE" },
+  { id: "video", number: "02", label: "影像", english: "MOVING IMAGE" },
+  { id: "web", number: "03", label: "网页", english: "WEB" },
+  { id: "mobile", number: "04", label: "移动端", english: "MOBILE" },
 ];
 
 const webProjects: Project[] = [
   {
     id: "focus-tree",
     title: "Focus Tree",
-    chinese: "给太多可能性找到当前重心",
     year: "2024—现在",
     type: "个人系统 / AI 工作流",
     status: "已上线",
@@ -65,7 +61,6 @@ const webProjects: Project[] = [
   {
     id: "frame-sonata",
     title: "Frame Sonata",
-    chinese: "从分镜到制作推进的视觉工作台",
     year: "2025—现在",
     type: "AI 视频 / 制作工作台",
     status: "商业化迭代",
@@ -77,7 +72,6 @@ const webProjects: Project[] = [
   {
     id: "dictation",
     title: "英语听写练习工具",
-    chinese: "把听写变成可以反复回看的练习",
     year: "2025—现在",
     type: "学习工具 / 语音工作流",
     status: "小范围试用",
@@ -89,7 +83,6 @@ const webProjects: Project[] = [
   {
     id: "comfypilot",
     title: "ComfyPilot",
-    chinese: "把脆弱的节点图变成可重复的生产流程",
     year: "2025—现在",
     type: "本地 AI 视频 / 生成工作台",
     status: "工作中",
@@ -103,7 +96,6 @@ const mobileProjects: Project[] = [
   {
     id: "html-preview",
     title: "HTML Preview",
-    chinese: "让生成的网页被看见、分享和交付",
     year: "2025—现在",
     type: "微信小程序 / 网页分发",
     status: "已上线",
@@ -114,7 +106,6 @@ const mobileProjects: Project[] = [
   {
     id: "ig-saver",
     title: "IG 链接存图",
-    chinese: "顺手做的链接解析与存图工具",
     year: "2025",
     type: "微信小程序 / 工具",
     status: "已上线",
@@ -125,7 +116,6 @@ const mobileProjects: Project[] = [
   {
     id: "shunbian",
     title: "顺便",
-    chinese: "当机会出现时，想起自己曾经想做的事",
     year: "2026",
     type: "移动端 / Personal Agent",
     status: "MVP",
@@ -140,7 +130,6 @@ const videoItems: VideoItem[] = [
   {
     id: "panda",
     title: "熊猫团团认世界",
-    chinese: "AI 动画儿童系列",
     category: "AI 动画",
     year: "2026",
     poster: "/assets/lab/panda-tuantuan.png",
@@ -149,7 +138,6 @@ const videoItems: VideoItem[] = [
   {
     id: "cherry",
     title: "CHERRY 70 周年 TVC",
-    chinese: "传统影视制作 / 品牌广告",
     category: "品牌广告",
     year: "2023",
     poster: "/assets/projects/frame-sonata.png",
@@ -158,7 +146,6 @@ const videoItems: VideoItem[] = [
   {
     id: "surface",
     title: "Microsoft Surface Pro 9",
-    chinese: "传统影视制作 / 产品广告",
     category: "产品广告",
     year: "2023",
     poster: "/assets/projects/focus-tree.png",
@@ -167,7 +154,6 @@ const videoItems: VideoItem[] = [
   {
     id: "mustang",
     title: "Mustang Mach-E",
-    chinese: "传奇尾灯带电起跑",
     category: "品牌广告",
     year: "2023",
     poster: "/assets/projects/comfypilot.png",
@@ -176,7 +162,6 @@ const videoItems: VideoItem[] = [
   {
     id: "panda-process",
     title: "熊猫团团认世界",
-    chinese: "10 集 AI 动画儿童系列",
     category: "AIGC 动画",
     year: "2026",
     poster: "/assets/lab/panda-tuantuan.png",
@@ -194,7 +179,6 @@ function SocialView() {
       <div className="viewIntro">
         <p className="viewEyebrow">01 / ELSEWHERE</p>
         <h1 id="social-title">社交链接</h1>
-        <p className="viewDescription">一些作品之外的线索。更新、代码和没有被整理成项目的片段。</p>
       </div>
       <div className="socialGrid">
         {socialLinks.map((item) => (
@@ -215,10 +199,6 @@ function SocialView() {
           )
         ))}
       </div>
-      <div className="socialNote">
-        <span>NOTES / 01</span>
-        <p>作品之外的更新、代码和线索。知道去哪里找，就能继续往下走。</p>
-      </div>
     </section>
   );
 }
@@ -229,12 +209,11 @@ function VideoView() {
 
   return (
     <section className="view viewVideo" aria-labelledby="video-title">
-      <div className="viewIntro splitIntro">
+      <div className="viewIntro">
         <div>
           <p className="viewEyebrow">02 / MOVING IMAGE</p>
           <h1 id="video-title">影像</h1>
         </div>
-        <p className="viewDescription">从广告片、AI 动画到过程测试。先看画面，再决定要不要读说明。</p>
       </div>
       <div className="videoStage">
         <div className="videoMain">
@@ -249,7 +228,6 @@ function VideoView() {
           <div className="videoMainMeta">
             <div><span className="redDot" />{active.category} / {active.year}</div>
             <h2>{active.title}</h2>
-            <p>{active.chinese}</p>
             {active.href ? <a href={active.href} target="_blank" rel="noreferrer">打开外部链接 <ExternalArrow /></a> : <span className="pendingInline">外部链接待补</span>}
           </div>
         </div>
@@ -282,12 +260,11 @@ function WebView() {
 
   return (
     <section className="view viewWeb" aria-labelledby="web-title">
-      <div className="viewIntro splitIntro">
+      <div className="viewIntro">
         <div>
           <p className="viewEyebrow">03 / WEB</p>
           <h1 id="web-title">网页</h1>
         </div>
-        <p className="viewDescription">产品、网页和互动实验。每个项目先展示它是什么，再慢慢展开它为什么存在。</p>
       </div>
       <div className="webArchive">
         <div className="webFeature">
@@ -296,7 +273,6 @@ function WebView() {
           <div className="featureCopy">
             <p>{active.type}</p>
             <h2>{active.title}</h2>
-            <h3>{active.chinese}</h3>
             <span>{active.description}</span>
             <div className="tagRow">{active.tags.map((tag) => <em key={tag}>{tag}</em>)}</div>
             {active.url ? <a href={active.url} target="_blank" rel="noreferrer">查看项目 <ExternalArrow /></a> : <span className="pendingInline">项目链接待补</span>}
@@ -317,7 +293,6 @@ function WebView() {
               <span className="projectStatus">{project.status}<i>↗</i></span>
             </button>
           ))}
-          <div className="indexNote"><span>ARCHIVE NOTE</span><p>网页视图是默认入口。点击左侧其他编号，右侧会切换为另一种作品排版。</p></div>
         </div>
       </div>
     </section>
@@ -327,22 +302,20 @@ function WebView() {
 function MobileView() {
   return (
     <section className="view viewMobile" aria-labelledby="mobile-title">
-      <div className="viewIntro splitIntro">
+      <div className="viewIntro">
         <div>
           <p className="viewEyebrow">04 / MOBILE</p>
           <h1 id="mobile-title">移动端</h1>
         </div>
-        <p className="viewDescription">小程序和手机 App。竖屏不是尺寸限制，而是另一种使用情境。</p>
       </div>
       <div className="deviceShelf">
         {mobileProjects.map((project, index) => (
           <article className={`deviceCard deviceCard${index + 1}`} key={project.id}>
             <div className="deviceFrame"><div className="deviceSpeaker" /><img src={project.image} alt={`${project.title} 移动端界面`} /></div>
-            <div className="deviceCaption"><span>0{index + 1} / {project.status}</span><h2>{project.title}</h2><p>{project.chinese}</p><small>{project.type}</small></div>
+            <div className="deviceCaption"><span>0{index + 1} / {project.status}</span><h2>{project.title}</h2><small>{project.type}</small></div>
           </article>
         ))}
       </div>
-      <div className="mobileNote"><span>SMALL SCREENS / LARGE QUESTIONS</span><p>移动端项目的链接和演示会在确认公开地址后补充。</p></div>
     </section>
   );
 }
@@ -361,7 +334,7 @@ export default function Home() {
 
       <div className="portfolioBody" id="top">
         <aside className="categoryRail" aria-label="作品分类">
-          <div className="railIntro"><span>INDEX</span><i /> <small>选择一个方向</small></div>
+          <div className="railIntro"><span>INDEX</span><i /></div>
           <nav>
             {categories.map((category) => (
               <button
@@ -373,12 +346,10 @@ export default function Home() {
               >
                 <span className="categoryNumber">{category.number}</span>
                 <span className="categoryLabel"><b>{category.label}</b><small>{category.english}</small></span>
-                <span className="categoryNote">{category.note}</span>
                 <span className="categoryArrow">→</span>
               </button>
             ))}
           </nav>
-          <div className="railFooter"><span>SCROLL / EXPLORE</span><span>∞</span></div>
         </aside>
 
         <main className="contentColumn">
