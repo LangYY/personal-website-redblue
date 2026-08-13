@@ -41,3 +41,4 @@ yarn-error.log*
 .gstack/
 .codex-dev.log
 .codex-dev.err.log
+*.tar.gz
